@@ -38,7 +38,7 @@
                         <c:if test="${user.role != null}">
                             <c:if test="${user.role == Constant.ADMIN_ROLE}">
                                 Welcome, <c:out value="${user.fullname}"/>
-                                <a class="btn btn-primary ml-md-3" href="http://localhost:19266/Froala_API/CrawlController" contenteditable="false">Crawl Data</a>
+                                <a class="btn btn-primary ml-md-3" href="CrawlController" contenteditable="false">Crawl Data</a>
                                 <a class="btn btn-danger ml-md-3" href="LogoutController" contenteditable="false">Log Out</a>
                             </c:if>
                             <c:if test="${user.role == Constant.USER_ROLE}">

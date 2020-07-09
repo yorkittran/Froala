@@ -12,12 +12,13 @@ package anhtt.config;
 public class Constant {
     
     public static final String MRSIMPLE_URL = "https://mrsimple.com.au";
-    public static final String MRSIMPLE_CATEGORY_URLS_XPATH = "//*[@id=\"section-header\"]/div/div[1]/nav/ul/li[position()=2 or position()=3]/div/div/div[1]/ul/li/a";
+    public static final String MRSIMPLE_CATEGORY_URLS_XPATH = "//*[@id=\"section-header\"]/div/div[1]/nav/ul/li[2]/div/div/div[1]/ul/li/a";
     public static final String MRSIMPLE_LIST_PRODUCT_URLS_XPATH = "//*[@class='Grid__Cell 1/2--phone 1/2--tablet-and-up 1/3--desk']/div/div/a";
     
     public static final String JACKJONES_URL = "https://www.jackjones.com/se/en/home";
-    public static final String JACKJONES_CATEGORY_URLS_XPATH = "//*[@data-category-id='jj-jeans2' or @data-category-id='jj-shorts']/a";
+    public static final String JACKJONES_CATEGORY_URLS_XPATH = "//*[@data-category-id='jj-jeans2' or @data-category-id='jj-shorts' or @data-category-id='jj-trousers']/a";
     public static final String JACKJONES_LIST_PRODUCT_URLS_XPATH = "//*[@class='isotope-grid__item isotope-grid__item--product']/article/div/header/a";
+    public static final String JACKJONES_SIZE_PARAMETER = "?start=0&sz=150";
     
     public static final String XML_FILE = "/WEB-INF/products.xml";
     public static final String XSL_MRSIMPLE_FILE = "/WEB-INF/products_mrsimple.xsl";

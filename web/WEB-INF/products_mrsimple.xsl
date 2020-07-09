@@ -11,7 +11,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output method="xml"/>
     <xsl:template match="/">
-        <xsl:variable name="priceStr" select="//*[@class='ProductMeta__Price Price u-h4' or @class='ProductMeta__Price Price Price--highlight u-h4']"/>
         <xsl:variable name="imageStr" select="//*[@class='Product__SlideshowNavScroller']/a[1]/img/@src"/>
         <products>
             <id>0</id>

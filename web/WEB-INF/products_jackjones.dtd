@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!ELEMENT products (id, categoryid, name, colour, description, price, image, url, recommend)>
+<!ELEMENT products (id, categoryid, name, colour, description, image, url, recommend)>
 <!ELEMENT id (#PCDATA)>
 <!ELEMENT categoryid (#PCDATA)>
 <!ELEMENT name (#PCDATA)>

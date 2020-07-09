@@ -6,10 +6,8 @@
 package anhtt.dtos;
 
 import java.io.Serializable;
-import java.util.Collection;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlElement;
 
 /**
  *
@@ -21,7 +19,7 @@ public class Tags implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
     private String name;
-    private Collection<Tagsofproducts> tagsofproductsCollection;
+    private String keyword;
 
     public Tags() {
     }
@@ -53,13 +51,13 @@ public class Tags implements Serializable {
         this.name = name;
     }
 
-    @XmlTransient
-    public Collection<Tagsofproducts> getTagsofproductsCollection() {
-        return tagsofproductsCollection;
+    @XmlElement
+    public String getKeyword() {
+        return keyword;
     }
 
-    public void setTagsofproductsCollection(Collection<Tagsofproducts> tagsofproductsCollection) {
-        this.tagsofproductsCollection = tagsofproductsCollection;
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 
     @Override

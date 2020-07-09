@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.ClientErrorException;
 
 /**
  *
@@ -41,14 +40,16 @@ public class LoginController extends HttpServlet {
             String password = request.getParameter("txtPassword");
             
             Users user = client.login(email, password);
-            if (!user.getRole().isEmpty()) {
+            if (user != null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("USER", user);
                 url = Constant.INDEX_PAGE;
+            } else {
+                request.setAttribute("MESSAGE", Constant.LOGIN_ERROR_MESSAGE);
+                url = Constant.LOGIN_PAGE;
             }
-        } catch (ClientErrorException e) {
-            request.setAttribute("MESSAGE", Constant.LOGIN_ERROR_MESSAGE);
-            url = Constant.LOGIN_PAGE;
+        } catch (Exception e) {
+            log("ERROR at LoginController: " + e.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
