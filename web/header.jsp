@@ -10,31 +10,36 @@
         <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="css/froala_editor.pkgd.min.css">
         <link rel="stylesheet" href="css/froala_style.min.css">
+        <c:if test="${param.recommend}">
+            <jsp:include page='ajax.jsp'/>
+        </c:if>
     </head>
     <body>
+        <c:set var="user" scope="session" value="${USER}"/>
         <header data-block-type="headers" data-id="1">
             <div class="container">
                 <nav class="navbar navbar-expand-md no-gutters">
                     <div class="col-3 text-left">
-                        <a href="index.jsp">
+                        <a href="InitController">
                         <img src="https://cdn.jsdelivr.net/gh/froala/design-blocks@master/dist/imgs//logo.png" height="30" alt="image">
                         </a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse-2" aria-controls="navbarNav7" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse navbar-collapse-2 justify-content-center col-md-6" id="navbarNav7">
-                        <ul class="navbar-nav justify-content-center">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" contenteditable="false">Recommendation</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" contenteditable="false">Shop</a>
-                            </li>
-                        </ul>
-                    </div>
+                    <c:if test="${user.role != null}">
+                        <div class="collapse navbar-collapse navbar-collapse-2 justify-content-center col-md-6" id="navbarNav7">
+                            <ul class="navbar-nav justify-content-center">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="InitRecommendController" contenteditable="false">Recommendation</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="FavoriteController" contenteditable="false">Favorite</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </c:if>
                     <div class="collapse navbar-collapse navbar-collapse-2">
-                        <c:set var="user" scope="session" value="${USER}"/>
                         <c:if test="${user.role != null}">
                             <c:if test="${user.role == Constant.ADMIN_ROLE}">
                                 Welcome, <c:out value="${user.fullname}"/>
@@ -54,7 +59,6 @@
                             </ul>
                             <a class="btn btn-primary ml-md-3" href="register.jsp" contenteditable="false">Register</a>
                         </c:if>
-                        <%--<c:out value="${cons.ADMIN_ROLE}"/>--%>
                     </div>
                 </nav>
             </div>

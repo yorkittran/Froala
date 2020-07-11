@@ -5,7 +5,7 @@
  */
 package anhtt.clients;
 
-import anhtt.dtos.Categories;
+import anhtt.dtos.Answers;
 import java.util.List;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
@@ -13,11 +13,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 
 /**
- * Jersey REST client generated for REST resource:CategoriesFacadeREST
- * [anhtt.dtos.categories]<br>
+ * Jersey REST client generated for REST resource:AnswersFacadeREST
+ * [anhtt.dtos.answers]<br>
  * USAGE:
  * <pre>
- *        CategoriesClient client = new CategoriesClient();
+ *        AnswersClient client = new AnswersClient();
  *        Object response = client.XXX(...);
  *        // do whatever with response
  *        client.close();
@@ -25,15 +25,15 @@ import javax.ws.rs.core.GenericType;
  *
  * @author Yorkit Tran
  */
-public class CategoriesClient {
+public class AnswersClient {
 
     private WebTarget webTarget;
     private Client client;
     private static final String BASE_URI = "http://localhost:19266/Froala_API/webresources";
 
-    public CategoriesClient() {
+    public AnswersClient() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
-        webTarget = client.target(BASE_URI).path("anhtt.dtos.categories");
+        webTarget = client.target(BASE_URI).path("anhtt.dtos.answers");
     }
 
     public String countREST() throws ClientErrorException {
@@ -82,18 +82,9 @@ public class CategoriesClient {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
-    public <T> T findByName(Class<T> responseType, String name) throws ClientErrorException {
+    public <T> List<Answers> findAll_XML(Class<T> responseType) throws ClientErrorException {
         WebTarget resource = webTarget;
-        if (name != null) {
-            resource = resource.queryParam("name", name);
-        }
-        resource = resource.path("find");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
-    }
-
-    public <T> List<Categories> findAll_XML(Class<T> responseType) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        GenericType<List<Categories>> list = new GenericType<List<Categories>>(){};
+        GenericType<List<Answers>> list = new GenericType<List<Answers>>(){};
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE).get(list);
     }
 

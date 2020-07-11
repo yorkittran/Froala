@@ -199,6 +199,9 @@ button::-moz-focus-inner,
 
 input[type="radio"],
 input[type="checkbox"] {
+  margin-top: ((@line-height-base - 1)/2) * 1rem;
+  width: 1.2rem;
+  height: 1.2rem;
   box-sizing: border-box;
   padding: 0; }
 
@@ -321,6 +324,14 @@ small,
 .small {
   font-size: 80%;
   font-weight: 400; }
+
+.medium {
+  font-size: 130%;
+  font-weight: 400; }
+
+.w-100 {
+  width: 200%;
+}
 
 mark,
 .mark {
@@ -480,7 +491,9 @@ textarea.form-control {
     color: #6c757d; }
 
 .form-check-label {
-  margin-bottom: 0; }
+  font-size: 20px;
+  margin-left: 1rem;
+  margin-bottom: 0.3rem; }
 
 .form-check-inline {
   display: inline-flex;

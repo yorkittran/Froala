@@ -9,11 +9,10 @@
                     </div>
                     <div class="col-12 ml-md-auto col-md-7 col-lg-6 pb-5 pb-md-0">
                         <img alt="image" class="fdb-icon" src="https://cdn.jsdelivr.net/gh/froala/design-blocks@master/dist/imgs//icons/gift.svg">
-                        <h1>Design Blocks</h1>
-                        <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts</p>
+                        <h1>Style, your way</h1>
+                        <p class="lead">Learn how to appreciate what you have, do more with less, and clear out the clutter in your life. Get dressed easier, each and every day.</p>
                         <p class="mt-4">
-                            <a class="btn btn-secondary" href="https://www.froala.com">Download</a>
-                            <a class="btn btn-dark ml-3" href="https://www.froala.com">Register</a>
+                            <a class="btn btn-secondary" href="InitRecommendController">Go find your dress</a>
                         </p>
                     </div>
                 </div>
@@ -23,16 +22,7 @@
             <div class="container">
                 <div class="row text-center">
                     <div class="col-12">
-                        <h1>There is a feature for everyone</h1>
-                        <p class="lead">
-                            <a href="https://www.froala.com">
-                                See all features 
-                                <svg class="svg-inline--fa fa-angle-right fa-w-8" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg="">
-                                    <path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"></path>
-                                </svg>
-                                <!-- <i class="fas fa-angle-right"></i> -->
-                            </a>
-                        </p>
+                        <h1>Most recommended items lately</h1>
                     </div>
                 </div>
                 <div class="row text-center justify-content-center mt-5">

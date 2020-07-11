@@ -4,16 +4,13 @@
                     <div class="col-12 col-md-8">
                         <ul class="nav justify-content-center justify-content-md-start">
                             <li class="nav-item">
-                                <a class="nav-link active" href="https://www.froala.com" contenteditable="false">Home</a>
+                                <a class="nav-link active" href="InitController" contenteditable="false">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="https://www.froala.com" contenteditable="false">Features</a>
+                                <a class="nav-link" href="InitRecommendController" contenteditable="false">Recommendation</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="https://www.froala.com" contenteditable="false">Terms</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="https://www.froala.com" contenteditable="false">About</a>
+                                <a class="nav-link" href="FavoriteController" contenteditable="false">Favorite</a>
                             </li>
                         </ul>
                     </div>

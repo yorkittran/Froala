@@ -72,7 +72,7 @@ public class CrawlController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = Constant.SUCCESS_PAGE;
         try {
-//            crawlMrSimple();
+            crawlMrSimple();
             crawlJackJones();
             
             url = Constant.SUCCESS_PAGE;
@@ -189,6 +189,8 @@ public class CrawlController extends HttpServlet {
             for (int j = 0; j < listProductNodeList.getLength(); j++) {
                 // Get XML source from HTML source with XSLT
                 String productURL = listProductNodeList.item(j).getAttributes().getNamedItem("href").getNodeValue();
+                // Skip swim shorts
+                if (productURL.contains("swim-shorts")) continue;
                 String productHTMLSrc = TextUtils.getHTMLFromURL(productURL);
                 String xmlSrc = new XSLTApplier().applyStylesheet(xslPath, productHTMLSrc);
                 
@@ -240,7 +242,7 @@ public class CrawlController extends HttpServlet {
         TagsClient tagsClient = new TagsClient();
         List<Tags> listTags = tagsClient.findAll_XML(List.class);
         TagsofproductsClient tagsOfProductClient = new TagsofproductsClient();
-        String textInfo = " " + product.getName().toLowerCase() + " " + product.getColour().toLowerCase() + " " + product.getDescription().toLowerCase() + " ";
+        String textInfo = " " + product.getName().toLowerCase() + " " + product.getColour().toLowerCase() + " ";
 
         for (Tags tag : listTags) {
             String[] keywords = tag.getKeyword().split(",");

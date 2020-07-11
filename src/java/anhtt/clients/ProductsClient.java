@@ -5,9 +5,12 @@
  */
 package anhtt.clients;
 
+import anhtt.dtos.Products;
+import java.util.List;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 
 /**
  * Jersey REST client generated for REST resource:ProductsFacadeREST
@@ -79,9 +82,17 @@ public class ProductsClient {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
-    public <T> T findAll_XML(Class<T> responseType) throws ClientErrorException {
+    public <T> List<Products> findByCategories(Class<T> responseType, String categoriesArray, String offset, String limit) throws ClientErrorException {
         WebTarget resource = webTarget;
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
+        resource = resource.path(java.text.MessageFormat.format("findByCategories/{0}/{1}/{2}", new Object[]{categoriesArray, offset, limit}));
+        GenericType<List<Products>> list = new GenericType<List<Products>>(){};
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE).get(list);
+    }
+
+    public <T> List<Products> findAll_XML(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        GenericType<List<Products>> list = new GenericType<List<Products>>(){};
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE).get(list);
     }
 
     public <T> T findAll_JSON(Class<T> responseType) throws ClientErrorException {

@@ -56,10 +56,9 @@
                             </div>
                             <div class="row justify-content-start mt-4">
                                 <div class="col">
-                                    <div class="form-check">
+                                    <div class="form-check pl-1">
                                         <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
-                                        I Read and Accept <a href="https://www.google.com">Terms and Conditions </a>
+                                            <input type="checkbox" class="form-check-input"/>&nbsp;I Read and Accept <a href="https://www.google.com">Terms and Conditions </a>
                                         </label>
                                     </div>
                                     <button class="btn btn-primary mt-4">Submit</button>

@@ -20,6 +20,14 @@
         <servlet-name>RegisterController</servlet-name>
         <servlet-class>anhtt.controllers.RegisterController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InitRecommendController</servlet-name>
+        <servlet-class>anhtt.controllers.InitRecommendController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RecommendController</servlet-name>
+        <servlet-class>anhtt.controllers.RecommendController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CrawlController</servlet-name>
         <url-pattern>/CrawlController</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/RegisterController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InitRecommendController</servlet-name>
+        <url-pattern>/InitRecommendController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RecommendController</servlet-name>
+        <url-pattern>/RecommendController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
