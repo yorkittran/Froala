@@ -6,25 +6,23 @@
 package anhtt.controllers;
 
 import anhtt.clients.FavoritesClient;
-import anhtt.clients.ProductsClient;
 import anhtt.config.Constant;
 import anhtt.dtos.Favorites;
 import anhtt.dtos.Products;
+import anhtt.dtos.Users;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Yorkit Tran
  */
-public class InitController extends HttpServlet {
+public class AddFavoriteController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,31 +37,33 @@ public class InitController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            // Get random favorite
+            // Check if user is login 
+            HttpSession session = request.getSession(false);  
+            Users user = (Users) session.getAttribute("USER");
+            if (user == null) {
+                request.getRequestDispatcher(Constant.LOGIN_PAGE).forward(request, response);
+            }
+            
+            // Get params
+            Products topId = new Products(Integer.parseInt(request.getParameter("topId")));
+            Products bottomId = new Products(Integer.parseInt(request.getParameter("bottomId")));
+            Favorites favorites;
+            Products layerId;
+            
+            // Check if there is layer item or not
+            if (request.getParameter("layerId") != null) {
+                layerId = new Products(Integer.parseInt(request.getParameter("layerId")));
+                favorites = new Favorites(0, layerId, topId, bottomId, user);
+            } else {
+                favorites = new Favorites(0, topId, bottomId, user);
+            }
             FavoritesClient favoritesClient = new FavoritesClient();
-            ProductsClient productsClient = new ProductsClient();
-            List<Favorites> listFavorites = favoritesClient.findAll_XML(List.class);
-            if (listFavorites.isEmpty()) {
-                System.out.println("wtf");
-                return;
-            }
-            int randIndex = ThreadLocalRandom.current().nextInt(listFavorites.size()) % listFavorites.size();
-            Favorites randFavorites = listFavorites.get(randIndex);
+            favoritesClient.create_XML(favorites);
             
-            // Get product from favorite
-            List<Products> setOfClothes = new ArrayList<>();
-            Products layer = randFavorites.getLayerId();
-            if (layer != null) {
-                setOfClothes.add(productsClient.find_XML(Products.class, String.valueOf(randFavorites.getLayerId().getId())));
-            }
-            setOfClothes.add(productsClient.find_XML(Products.class, String.valueOf(randFavorites.getTopId().getId())));
-            setOfClothes.add(productsClient.find_XML(Products.class, String.valueOf(randFavorites.getBottomId().getId())));
-            
-            request.setAttribute("SETOFCLOTHES", setOfClothes);
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("Added to favorite");
         } catch (Exception e) {
-            log("ERROR at InitController: " + e.getMessage());
-        } finally {
-            request.getRequestDispatcher(Constant.INDEX_JSP_PAGE).forward(request, response);
+            log("ERROR at AddFavoriteController: " + e.getMessage());
         }
     }
 

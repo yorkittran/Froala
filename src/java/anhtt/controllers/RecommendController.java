@@ -26,7 +26,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -140,7 +139,7 @@ public class RecommendController extends HttpServlet {
                     int productMark = ((Map.Entry<Products, Integer>) entry).getValue();
 
                     // Add short sleeve and jacket to list
-                    if ((productName.contains("Short Sleeve") || productName.contains("Jacket")) && highScore <= productMark) {
+                    if ((productName.contains(Constant.SHORT_SLEEVE) || productName.contains(Constant.JACKET)) && highScore <= productMark) {
                         listLayerHighMark.add(product);
                         highScore = ((Map.Entry<Products, Integer>) entry).getValue();
                     } 
@@ -155,7 +154,7 @@ public class RecommendController extends HttpServlet {
                 String productType = product.getCategoryId().getType();
                 int productMark = ((Map.Entry<Products, Integer>) entry).getValue();
                 // Add top to list
-                if (productType.equals(Constant.TOP_CATEGORY_TYPE) && !productName.contains("Jacket") && highScore <= productMark) {
+                if (productType.equals(Constant.TOP_CATEGORY_TYPE) && !productName.contains(Constant.JACKET) && highScore <= productMark) {
                     listTopHighMark.add(product);
                     highScore = ((Map.Entry<Products, Integer>) entry).getValue();
                 } 
@@ -167,7 +166,7 @@ public class RecommendController extends HttpServlet {
                 Products product = ((Map.Entry<Products, Integer>) entry).getKey();
                 int productMark = ((Map.Entry<Products, Integer>) entry).getValue();
                 // Add tees to list only tee (for layer short sleeve)
-                if (product.getCategoryId().getName().equals("Tees") && highScore <= productMark) {
+                if (product.getCategoryId().getName().equals(Constant.TEES) && highScore <= productMark) {
                     // tees without pattern
                     boolean pattern = false;
                     List<Tagsofproducts> listTagsOfTee = tagsOfProductsClient.findByProductId(List.class, String.valueOf(product.getId()));
@@ -227,7 +226,7 @@ public class RecommendController extends HttpServlet {
                 setOfClothes.add(layer);
                 
                 // Check if layer is Short Sleeve -> should get a tee as top
-                if (layer.getName().contains("Short Sleeve")) {
+                if (layer.getName().contains(Constant.SHORT_SLEEVE)) {
                     // Get tee
                     int randTeeIndex = ThreadLocalRandom.current().nextInt(listTeeHighMark.size()) % listTeeHighMark.size();
                     Products tee = listTeeHighMark.get(randTeeIndex);

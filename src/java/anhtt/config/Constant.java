@@ -26,19 +26,22 @@ public class Constant {
     public static final String XSL_JACKJONES_FILE = "/WEB-INF/products_jackjones.xsl";
     public static final String DTD_JACKJONES_FILE = "/WEB-INF/products_jackjones.dtd";
     
-    public static final String INDEX_PAGE = "index.jsp";
+    public static final String INDEX_PAGE = "InitController";
+    public static final String INDEX_JSP_PAGE = "index.jsp";
     public static final String LOGIN_PAGE = "login.jsp";
     public static final String REGISTER_PAGE = "register.jsp";
     public static final String RECOMMEND_PAGE = "recommend.jsp";
-    public static final String SHOP_PAGE = "shop.jsp";
+    public static final String FAVORITE_PAGE = "favorite.jsp";
     public static final String SUCCESS_PAGE = "success.jsp";
     public static final String ERROR_PAGE = "error.jsp";
     
     public static final String ADMIN_ROLE = "admin";
     public static final String USER_ROLE = "user";
     
-    public static final String TOP_LAYER_CATEGORY_TYPE = "Top/Layer";
-    public static final String LAYER_CATEGORY_TYPE = "Layer";
+    public static final String SHORT_SLEEVE = "Short Sleeve";
+    public static final String TEES = "Tees";
+    public static final String JACKET = "Jacket";
+    
     public static final String TOP_CATEGORY_TYPE = "Top";
     public static final String BOTTOM_CATEGORY_TYPE = "Bottom";
     
@@ -46,5 +49,4 @@ public class Constant {
 
     public static final String LOGIN_ERROR_MESSAGE = "Invalid email or password. Please try again.";
     public static final String REGISTER_ERROR_MESSAGE = "Confirm password is not matched.";
-    public static final int PREFER_LAYER = 5;
 }

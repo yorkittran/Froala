@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page='header.jsp'>
+    <jsp:param name="title" value="Recommendation"/>
     <jsp:param name="recommend" value="true"/>
 </jsp:include>
         <section class="fdb-block" data-block-type="contents" data-id="1" draggable="true">

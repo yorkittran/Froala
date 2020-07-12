@@ -3,6 +3,8 @@
 <%@page import="anhtt.config.Constant" %>
 <html>
     <head>
+	<title>${param.title}</title>
+        <meta charset="ISO-8859-1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
@@ -30,6 +32,9 @@
                     <c:if test="${user.role != null}">
                         <div class="collapse navbar-collapse navbar-collapse-2 justify-content-center col-md-6" id="navbarNav7">
                             <ul class="navbar-nav justify-content-center">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="InitController" contenteditable="false">Home</a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="InitRecommendController" contenteditable="false">Recommendation</a>
                                 </li>

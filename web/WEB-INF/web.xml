@@ -28,6 +28,18 @@
         <servlet-name>RecommendController</servlet-name>
         <servlet-class>anhtt.controllers.RecommendController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddFavoriteController</servlet-name>
+        <servlet-class>anhtt.controllers.AddFavoriteController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FavoritesController</servlet-name>
+        <servlet-class>anhtt.controllers.FavoritesController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FavoriteController</servlet-name>
+        <servlet-class>anhtt.controllers.FavoriteController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CrawlController</servlet-name>
         <url-pattern>/CrawlController</url-pattern>
@@ -55,6 +67,18 @@
     <servlet-mapping>
         <servlet-name>RecommendController</servlet-name>
         <url-pattern>/RecommendController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddFavoriteController</servlet-name>
+        <url-pattern>/AddFavoriteController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FavoritesController</servlet-name>
+        <url-pattern>/FavoritesController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FavoriteController</servlet-name>
+        <url-pattern>/FavoriteController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

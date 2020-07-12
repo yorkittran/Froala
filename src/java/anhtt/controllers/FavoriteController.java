@@ -10,21 +10,22 @@ import anhtt.clients.ProductsClient;
 import anhtt.config.Constant;
 import anhtt.dtos.Favorites;
 import anhtt.dtos.Products;
+import anhtt.dtos.Users;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Yorkit Tran
  */
-public class InitController extends HttpServlet {
+public class FavoriteController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,32 +39,44 @@ public class InitController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = Constant.ERROR_PAGE;
         try {
+            // Check if user is login 
+            HttpSession session = request.getSession(false);  
+            Users user = (Users) session.getAttribute("USER");
+            if (user == null) {
+                request.getRequestDispatcher(Constant.LOGIN_PAGE).forward(request, response);
+            }
+            
             // Get random favorite
             FavoritesClient favoritesClient = new FavoritesClient();
             ProductsClient productsClient = new ProductsClient();
-            List<Favorites> listFavorites = favoritesClient.findAll_XML(List.class);
+            List<List<Products>> listSetOfClothes = new ArrayList<>();
+            List<Favorites> listFavorites = favoritesClient.findByUser(List.class, user.getEmail());
             if (listFavorites.isEmpty()) {
-                System.out.println("wtf");
+                url = Constant.FAVORITE_PAGE;
                 return;
             }
-            int randIndex = ThreadLocalRandom.current().nextInt(listFavorites.size()) % listFavorites.size();
-            Favorites randFavorites = listFavorites.get(randIndex);
             
-            // Get product from favorite
-            List<Products> setOfClothes = new ArrayList<>();
-            Products layer = randFavorites.getLayerId();
-            if (layer != null) {
-                setOfClothes.add(productsClient.find_XML(Products.class, String.valueOf(randFavorites.getLayerId().getId())));
+            // Loop to add product list into list
+            for (Favorites favorites : listFavorites) {
+                // Get set of clothes from favorite
+                List<Products> setOfClothes = new ArrayList<>();
+                Products layer = favorites.getLayerId();
+                if (layer != null) {
+                    setOfClothes.add(productsClient.find_XML(Products.class, String.valueOf(favorites.getLayerId().getId())));
+                }
+                setOfClothes.add(productsClient.find_XML(Products.class, String.valueOf(favorites.getTopId().getId())));
+                setOfClothes.add(productsClient.find_XML(Products.class, String.valueOf(favorites.getBottomId().getId())));
+                listSetOfClothes.add(setOfClothes);
             }
-            setOfClothes.add(productsClient.find_XML(Products.class, String.valueOf(randFavorites.getTopId().getId())));
-            setOfClothes.add(productsClient.find_XML(Products.class, String.valueOf(randFavorites.getBottomId().getId())));
             
-            request.setAttribute("SETOFCLOTHES", setOfClothes);
+            request.setAttribute("LISTSETOFCLOTHES", listSetOfClothes);
+            url = Constant.FAVORITE_PAGE;
         } catch (Exception e) {
-            log("ERROR at InitController: " + e.getMessage());
+            log("ERROR at FavoritesController: " + e.getMessage());
         } finally {
-            request.getRequestDispatcher(Constant.INDEX_JSP_PAGE).forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

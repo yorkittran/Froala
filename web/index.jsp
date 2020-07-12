@@ -1,5 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page='header.jsp'>
-    <jsp:param name="articleId" value=""/>
+    <jsp:param name="title" value="Home"/>
 </jsp:include>
         <section class="fdb-block" data-block-type="contents" data-id="2" draggable="true">
             <div class="container">
@@ -18,6 +19,7 @@
                 </div>
             </div>
         </section>
+        <c:if test="${requestScope.SETOFCLOTHES != null}">
         <section class="fdb-block" data-block-type="features" data-id="3" draggable="true">
             <div class="container">
                 <div class="row text-center">
@@ -26,23 +28,14 @@
                     </div>
                 </div>
                 <div class="row text-center justify-content-center mt-5">
-                    <div class="col-10 col-sm-3">
-                        <img alt="image" class="img-fluid rounded" src="https://cdn.jsdelivr.net/gh/froala/design-blocks@master/dist/imgs//hero/blue.svg">
-                        <h3><strong>Feature One</strong></h3>
-                    </div>
-                    <div class="col-10 col-sm-3 pt-5 pt-sm-0">
-                        <img alt="image" class="img-fluid rounded" src="https://cdn.jsdelivr.net/gh/froala/design-blocks@master/dist/imgs//hero/red.svg">
-                        <h3><strong>Feature Two</strong></h3>
-                    </div>
-                    <div class="col-10 col-sm-3 pt-5 pt-sm-0">
-                        <img alt="image" class="img-fluid rounded" src="https://cdn.jsdelivr.net/gh/froala/design-blocks@master/dist/imgs//hero/purple.svg">
-                        <h3><strong>Feature Three</strong></h3>
-                    </div>
-                    <div class="col-10 col-sm-3 pt-5 pt-sm-0">
-                        <img alt="image" class="img-fluid rounded" src="https://cdn.jsdelivr.net/gh/froala/design-blocks@master/dist/imgs//hero/yellow.svg">
-                        <h3><strong>Feature Four</strong></h3>
-                    </div>
+                    <c:forEach var="item" items="${requestScope.SETOFCLOTHES}">
+                        <div class="col-10 col-sm-3">
+                            <img alt="image" class="img-fluid rounded" src="${item.image}">
+                            <a class="nav-link" href="${item.url}"><h3><strong>${item.name} - ${item.colour}</strong></h3></a>
+                        </div>
+                    </c:forEach>
                 </div>
             </div>
         </section>
+        </c:if>
 <jsp:include page='footer.jsp'/>
